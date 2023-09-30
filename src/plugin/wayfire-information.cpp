@@ -116,7 +116,7 @@ void wayfire_information::send_view_info(wayfire_view view)
         }
     }
 
-    int focused = wf::get_active_view_for_output(output) == view;
+    int focused = wf::get_core().seat->get_active_view() == view;
 
     for (auto r : client_resources)
     {
@@ -194,7 +194,7 @@ wayfire_view view_from_id(int32_t id)
 {
     if (id == -1)
     {
-        return wf::get_active_view_for_output(wf::get_core().seat->get_active_output());
+        return wf::get_core().seat->get_active_view();
     }
 
     for (auto& view : wf::get_core().get_all_views())
